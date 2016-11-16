@@ -1,0 +1,1 @@
+setxkbmap "us,ru" ",winkeys" "grp:ctrl_shift_toggle,grp_led:scroll"

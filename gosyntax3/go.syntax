@@ -1,0 +1,114 @@
+context default
+# keywords
+	keyword whole break blue
+	keyword whole case blue
+	keyword whole chan brightred
+	keyword whole const blue
+	keyword whole continue blue
+	keyword whole default blue
+	keyword whole defer blue
+	keyword whole else blue
+	keyword whole fallthrough blue
+	keyword whole for blue
+	keyword whole func  blue
+	keyword whole go blue
+	keyword whole goto blue
+	keyword whole if blue
+	keyword whole import  magenta
+	keyword whole interface blue
+	keyword whole map blue
+	keyword whole package magenta
+	keyword whole range blue
+	keyword whole return blue
+	keyword whole select blue
+	keyword whole struct blue
+	keyword whole switch blue
+	keyword whole type blue
+	keyword whole var blue
+# builtin types
+	keyword whole uint8 green
+	keyword whole uint16 green
+	keyword whole uint32 green
+	keyword whole uint64 green
+	keyword whole int8 green
+	keyword whole int16 green
+	keyword whole int32 green
+	keyword whole int64 green
+	keyword whole float32 green
+	keyword whole float64 green
+	keyword whole byte green
+	keyword whole uint green
+	keyword whole int green
+	keyword whole float green
+	keyword whole uintptr green
+	keyword whole string green
+	keyword whole bool green
+	keyword whole error green
+# builtin functions
+	keyword whole nil magenta
+	keyword whole true magenta
+	keyword whole false magenta
+	keyword whole iota magenta
+	keyword whole cap blue
+	keyword whole close blue
+	keyword whole closed blue
+	keyword whole len blue
+	keyword whole make blue
+	keyword whole new blue
+	keyword whole panic blue
+	keyword whole panicln blue
+	keyword whole print blue
+	keyword whole println brightred
+# special functions
+	keyword whole init brightred
+	keyword whole main brightred
+# comment chars
+	keyword /\* red
+	keyword \*/ red
+	keyword // red
+	keyword " blue
+	keyword ' blue
+# punctuation, operator chars
+	keyword <- brightred
+	keyword -> magenta
+	keyword \+  magenta
+	keyword &  magenta
+	keyword (  magenta
+	keyword ) magenta
+	keyword - magenta
+	keyword | magenta
+	keyword < magenta
+	keyword [ magenta
+	keyword ] magenta
+	keyword \* magenta
+	keyword ^ magenta
+	keyword > magenta
+	keyword { magenta
+	keyword } magenta
+	keyword / magenta
+	keyword = black
+	keyword , black
+	keyword ; magenta
+	keyword % magenta
+	keyword ! magenta
+	keyword . magenta
+	keyword : magenta
+
+# comment
+context exclusive /\* \*/ cyan
+context exclusive // \n cyan
+
+# char, raw string, string
+context exclusive ' ' brown
+	keyword \\\{abfnrtv\\'"\} green
+	keyword \\\{0123\}\{01234567\}\{01234567\} green
+	keyword \\x\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green
+	keyword \\u\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green
+	keyword \\U\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green
+context exclusive ` ` brown
+context exclusive " " brown
+	keyword \\\{abfnrtv\\'"\} green
+	keyword \\\{0123\}\{01234567\}\{01234567\} green
+	keyword \\x\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green
+	keyword \\u\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green
+	keyword \\U\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\}\{0123456789abcdefABCDEF\} green

@@ -1,0 +1,218 @@
+# $MirOS: contrib/code/jupp/syntax/python.jsf.in,v 1.4 2012/09/02 14:46:52 tg Exp $
+#-
+# JOE syntax highlight file for Python
+
+# TODO:
+#  * octal escape sequences
+#  * highlight function and class names?
+
+
+# Always reparse from beginning
+-
+
+
+=Idle
+=Comment 	bold black
+=Docstring	yellow
+=DocEscape	yellow
+=Constant	yellow
+=Escape
+=Keyword 	bold blue
+=Other		magenta
+=Type		green
+=Brace		magenta
+=Bright		yellow
+=Channel	red
+
+:idle Idle
+	*		idle
+	"\n"		idle
+	"<"		channel recolor=-1
+	"/"		comment recolor=-1
+	"0-9"		first_digit	recolor=-1
+	"'"		string_sq_1	recolor=-1
+	"\""		string_dq_1	recolor=-1
+	"a-zA-Z_"	ident		buffer
+	"}{()[]_"		brace		recolor=-1
+	"}!:*.,"		brace		recolor=-1
+	"&;+-"		bright		recolor=-1
+
+:brace Brace
+	*		idle	noeat
+
+:bright Bright
+	*		idle	noeat
+
+:channel Channel
+	*		channel
+	" "		idle	recolor=-2
+	"="		idle	recolor=-2
+	"<"		idle	recolor=-2
+	"-"		idle
+
+:slash Idle
+	*		idle		noeat
+	"*"		comment		recolor=-1
+	"/"		line_comment	recolor=-1
+
+:comment Comment
+	*		comment
+	"*"		maybe_end_comment
+	"\n"		idle
+
+:maybe_end_comment Comment
+	*		comment
+	"/"		idle
+	"*"		maybe_end_comment
+
+:line_comment Comment
+	"*"		line_comment
+	"\n"		reset
+
+:string_sq_1 Constant
+	*		string_sq	noeat
+	"'"		string_sq_2
+
+:string_sq_2 Constant
+	*		idle		noeat
+	"'"		docstr_sq	recolor=-3
+
+:string_sq Constant
+	*		string_sq
+#	"\'"		idle
+	"\\"		string_sq_esc	recolor=-1
+
+:string_sq_esc Escape
+	*		string_sq
+	"\n"		string_sq	recolor=-2
+
+:string_dq_1 Constant
+	*		string_dq	noeat
+	"\""		string_dq_2
+
+:string_dq_2 Constant
+	*		idle		noeat
+	"\""		docstr_dq	recolor=-3
+
+:string_dq Constant
+	*		string_dq
+	"\""		idle
+	"\\"		string_dq_esc	recolor=-1
+
+:string_dq_esc Escape
+	*		string_dq
+	"\n"		string_dq	recolor=-2
+
+:first_digit Constant
+	*		idle	noeat
+	"xX"		hex
+	"."		float
+	"0-9"		first_number
+
+:hex Constant
+	*		idle	noeat
+	"0-9A-Fa-f"	hex
+
+:first_number Constant
+	*		idle	noeat
+	"0-9"		first_number
+	"."		float
+
+:maybe_float Constant
+	*		idle	recolor=-2	noeat
+	"0-9"		float		recolor=-2
+
+:float Constant
+	*		idle	noeat
+	"eE"		epart
+	"0-9"		float
+
+:epart Constant
+	*		idle	noeat
+	"0-9+\-"	enum
+
+:enum Constant
+	*		idle	noeat
+	"0-9"		enum
+
+:ident Idle
+	*		idle		noeat strings
+	"append"	kw
+	"bool"		type
+	"break"		kw
+	"byte"		type
+	"cap"		kw
+	"case"		kw
+	"chan"		type
+	"close"		oth
+	"complex"	kw
+	"complex64"	type
+	"complex128"	type
+	"const"		oth
+	"continue"	kw
+	"copy"		kw
+	"default"	kw
+	"defer"		kw
+	"delete"	oth
+	"else"		kw
+	"error"		type
+	"fallthrough"	kw
+	"false"		type
+	"float32"	type
+	"float64"	type
+	"for"		kw
+	"func"		kw
+	"go"		kw
+	"goto"		kw
+	"if"		kw
+	"imag"		kw
+	"import"	kw
+	"init"		oth
+	"int"		type
+	"int8"		type
+	"int16"		type
+	"int32"		type
+	"int64"		type
+	"interface"	kw
+	"iota"		oth
+	"len"		kw
+	"main"		oth
+	"make"		oth
+	"map"		kw
+	"new"		oth
+	"nil"		type
+	"package"	oth
+	"panic"		kw
+	"panicln"	kw
+	"print"		kw
+	"println"	kw
+	"range"		kw
+	"real"		kw
+	"recover"	kw
+	"return"	kw
+	"rune"		type
+	"select"	kw
+	"string"	type
+	"struct"	kw
+	"switch"	kw
+	"true"		type
+	"type"		kw
+	"uint"		type
+	"uint8"		type
+	"uint16"	type
+	"uint32"	type
+	"uint64"	type
+	"uintptr"	type
+	"value"		type
+	"var"		kw
+done
+	"a-zA-Z0-9_"	ident
+
+:kw Keyword
+	*	idle	noeat
+
+:oth Other
+	*	idle	noeat
+
+:type Type
+	*	idle	noeat
